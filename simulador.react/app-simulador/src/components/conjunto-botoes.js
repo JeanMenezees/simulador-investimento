@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
+import { useContext } from "react/cjs/react.development";
 import styled from "styled-components";
+import ContextoDeDados from "../contexts/contextoDados";
 
 const BoxBotoes = styled.div`
   display: flex;
@@ -23,8 +25,7 @@ const BotaoDeConjunto = styled.button`
 
 // Posso passar o tipo de layout que quero para o componente
 export default function ConjuntoDeBotoes(props) {
-  //Usando o state para saber que botao esta selecionado
-  const [botaoSelecionado, setBotaoSelecionado] = useState();
+  const contexto = useContext(ContextoDeDados);
 
   return (
     <>
@@ -34,8 +35,9 @@ export default function ConjuntoDeBotoes(props) {
             esquerdo
             onClick={(e) => {
               e.preventDefault();
-              setBotaoSelecionado(props.valores[0]);
+              contexto.setInvestimento(props.valores[0]);
             }}
+            selecionado={contexto.investimentoSelecionado === props.valores[0]}
           >
             {props.valores[0]}
           </BotaoDeConjunto>
@@ -43,8 +45,9 @@ export default function ConjuntoDeBotoes(props) {
             meio
             onClick={(e) => {
               e.preventDefault();
-              setBotaoSelecionado(props.valores[1]);
+              contexto.setInvestimento(props.valores[1]);
             }}
+            selecionado={contexto.investimentoSelecionado === props.valores[1]}
           >
             {props.valores[1]}
           </BotaoDeConjunto>
@@ -52,8 +55,9 @@ export default function ConjuntoDeBotoes(props) {
             direito
             onClick={(e) => {
               e.preventDefault();
-              setBotaoSelecionado(props.valores[2]);
+              contexto.setInvestimento(props.valores[2]);
             }}
+            selecionado={contexto.investimentoSelecionado === props.valores[2]}
           >
             {props.valores[2]}
           </BotaoDeConjunto>
@@ -64,8 +68,9 @@ export default function ConjuntoDeBotoes(props) {
             esquerdo
             onClick={(e) => {
               e.preventDefault();
-              setBotaoSelecionado(props.valores[0]);
+              contexto.setIndexacao(props.valores[0]);
             }}
+            selecionado={contexto.indexacaoSelecionada === props.valores[0]}
           >
             {props.valores[0]}
           </BotaoDeConjunto>
@@ -73,8 +78,9 @@ export default function ConjuntoDeBotoes(props) {
             direito
             onClick={(e) => {
               e.preventDefault();
-              setBotaoSelecionado(props.valores[1]);
+              contexto.setIndexacao(props.valores[1]);
             }}
+            selecionado={contexto.indexacaoSelecionada === props.valores[1]}
           >
             {props.valores[1]}
           </BotaoDeConjunto>

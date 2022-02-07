@@ -44,11 +44,13 @@ export default function SimuladorSection() {
       {/* Formulario para selecionar o tipo de investimento */}
       <Formulario
         tipo="0"
+
         labels={["Aporte diário", "Prazo (em meses)", "IPCA (ao ano)"]}
         botoesDefault
         valoresBotoes={["Bruto", "Liquido"]}
         titulo="Rendimento"
       />
+      
       {/* Formulario para selecionar o tipo de indexação */}
       <Formulario
         tipo="1"

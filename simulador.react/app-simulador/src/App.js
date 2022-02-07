@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react/cjs/react.development";
+import { useContext, useEffect, useState } from "react/cjs/react.development";
 import axios from "axios";
 import styled from "styled-components";
 import SimuladorSection from "./components/simulacao-section";
 import ContextoDeDados from "./contexts/contextoDados";
+import ResultadoSection from "./components/resultado-section";
 
 const Box = styled.div`
   display: flex;
@@ -24,10 +25,23 @@ const TituloPrincipal = styled.h1`
 `;
 
 function App() {
+  const [tipoInvestimento, setTipoInvestimento] = useState();
+  const [tipoIndexacao, setTipoIndexacao] = useState();
+
   return (
     <Box>
       <TituloPrincipal>Simulador de investimentos</TituloPrincipal>
-      <SimuladorSection />
+      <ContextoDeDados.Provider
+        value={{
+          setIndexacao: setTipoIndexacao,
+          indexacaoSelecionada: tipoIndexacao,
+          setInvestimento: setTipoInvestimento,
+          investimentoSelecionado: tipoInvestimento
+        }}
+      >
+        <SimuladorSection />
+        <ResultadoSection />
+      </ContextoDeDados.Provider>
     </Box>
   );
 }
