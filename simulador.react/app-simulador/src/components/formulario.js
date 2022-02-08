@@ -7,6 +7,11 @@ const StyledFormulario = styled.form`
   display: flex;
   flex-direction: column;
   padding: 4%;
+  box-sizing: border-box;
+  
+  @media (min-width: 1070px){
+    width: 50%;
+  }
 `;
 
 const StyledInput = styled.input`
@@ -28,6 +33,7 @@ const FormularioHeader = styled.header`
   flex-direction: row;
   algin-items: center;
   justify-content: space-between;
+  box-sizing: border-box;
 `;
 
 const FormularioTitulo = styled.h1`
