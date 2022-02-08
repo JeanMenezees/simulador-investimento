@@ -37,6 +37,21 @@ Comando para clonar o repositorio
 
 ## Como usar?
 
+### ⚠️ Atenção
+
+- Aqui temos 3 projetos
+  - React JS
+  - API fake
+  - Testes com cypress
+
+**Para rodar os 3 projetos, abra o projeto no visual studio, e com o terminal deste, abra 3 powershells**
+
+- O projeto da API será iniciado primeiro
+- O projeto react logo em seguida também será iniciado por outro powershell
+- O proejeto de testes precisa que os dois sejam iniciados de acordo com essa ordem
+
+Obrigado 😄
+
 ### Iniciando API fake
 
 Com o repositório clonado, na pasta simulador.api (onde fica a api) execute o comando:
@@ -63,10 +78,30 @@ Clique y (para yes), isso ocorre porque na porta 3000 do seu localhost, a api ja
 
 Pronto! agora você ja pode usar o simulador!
 
+## Como rodar os testes (**Cypress**)
+
+### Iniciando projeto de teste
+
+1. Entre na pasta simulador.react
+2. Entre na pasta app-simulador
+3. Execute o seguinte comando no seu terminal
+
+```
+npx cypress open
+```
+
+Isto abrirá a guia de testes do cypress
+
+Este projeto é testado em diferentes componentes, então escolha o componente que deseja testar
+
+Pronto, agora é so rodar os testes!
+
 ## Regras aplicadas
 
 - Nos inputs do usuário, só é possível inserir números
 - Toda vez que o simulador é renderizado, os valores fixos do IPCA e do CDI são preenchidos com um GET na API fake
+- O usuário não pode alterar os dados da api fake, nos inputs que carregam o cdi e o ipca
+- O usuário não pode fazer a simulação sem preencher os dados
 - Toda vez que o usuário clica em *Simular*, é feito um GET na API, com os tipos de investimento e indexação selecionados pelo usuário
 
 ## Ferramentas utilizadas
@@ -74,6 +109,7 @@ Pronto! agora você ja pode usar o simulador!
 - Prettier (formatador de código)
 - React JS code snippets (atalhos para facilitar codar)
 - Styled components
+- Cypress
 
 ## Conceitos utilizados
 
@@ -82,6 +118,7 @@ Pronto! agora você ja pode usar o simulador!
   - useState
   - useContext
   - useEffect
+- Testes automatizados
   
 ## Para onde prosseguir?
  - Implementar uma lógica para postar dados na API
