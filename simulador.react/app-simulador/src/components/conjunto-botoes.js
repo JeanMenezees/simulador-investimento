@@ -16,7 +16,7 @@ const BotaoDeConjunto = styled.button`
     width: 50%;
     padding: 16px;
     background-color: ${(props) =>
-      props.selecionado ? "gray;" : "transparent;"}
+      props.selecionado ? "orange;" : "transparent;"}
     color: ${(props) => (props.selecionado ? "white;" : "black;")}
     text-transform: uppercase;
     border-bottom-left-radius: ${(props) => (props.esquerdo ? "8px;" : "0;")}

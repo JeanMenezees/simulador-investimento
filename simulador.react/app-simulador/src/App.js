@@ -54,11 +54,12 @@ const Botao = styled.div`
   width: 100%;
   padding: 16px;
   background-color: ${(props) =>
-    props.limparCampos ? "transparent;" : "gray;"};
-  color: ${(props) => (props.limparCampos ? "gray;" : "white;")};
+    props.limparCampos ? "transparent;" : "orange;"};
+  color: ${(props) => (props.limparCampos ? "black;" : "black;")};
   border-radius: 4px;
   margin: 8px 0;
   font-weight: bold;
+  cursor: pointer;
   border: ${(props) => (props.limparCampos ? "solid 2px gray;" : "0")};
 
   @media (min-width: 1070px){
@@ -74,10 +75,13 @@ const BoxSimulacaoEBotoes = styled.div`
 `;
 
 function App() {
+  //states para pegar os tipos selecionados para o botao simular dar o get e verificar qual simulacao deve ser exibida
   const [tipoInvestimento, setTipoInvestimento] = useState();
   const [tipoIndexacao, setTipoIndexacao] = useState();
+  //state para exibir a secao do resultado
   const [resultadoAtivo, setResultadoAtivo] = useState(false);
-  const [simulacoes, setSimulacoes] = useState([
+  //Setando a simulacao vazia
+  const [simulacao, setSimulacao] = useState([
     {
       valorFinalBruto: "",
       aliquotaIR: "",
@@ -94,6 +98,7 @@ function App() {
 
   return (
     <Box>
+      {/* Contexto para haver uma comunicacao entre os childrens e o parent com lift state e data flow para saber qual tipo esta selecionado */}
       <ContextoDeDados.Provider
         value={{
           setIndexacao: setTipoIndexacao,
@@ -109,11 +114,12 @@ function App() {
             <BoxBotoes>
               <Botao limparCampos>Limpar campos</Botao>
               <Botao
+              // Get na api e filtro com os tipos selecionados do state
                 onClick={() => {
                   axios
                     .get("http://localhost:3000/simulacoes")
                     .then((resposta) => {
-                      setSimulacoes(
+                      setSimulacao(
                         resposta.data.filter(
                           (simulacao) =>
                             simulacao.tipoRendimento === tipoInvestimento &&
@@ -124,6 +130,7 @@ function App() {
                     .catch((erro) => {
                       console.log("Ih, deu ruim", erro);
                     })
+                    // Fazendo a secao do resultado aparecer
                     .then(setResultadoAtivo(true));
                 }}
               >
@@ -131,7 +138,8 @@ function App() {
               </Botao>
             </BoxBotoes>
           </BoxSimulacaoEBotoes>
-          {resultadoAtivo ? <ResultadoSection simulacao={simulacoes} /> : ""}
+          {/* Se o state da secao estiver true exibe a secao do resultado, se nao nao exibe nada  */}
+          {resultadoAtivo ? <ResultadoSection simulacao={simulacao} /> : ""}
         </BoxSecoes>
       </ContextoDeDados.Provider>
     </Box>

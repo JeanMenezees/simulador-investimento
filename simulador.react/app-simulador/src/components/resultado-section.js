@@ -33,7 +33,7 @@ const BoxCards = styled.div`
   @media (min-width: 1070px) {
     display: grid;
     grid-template-columns: auto auto auto;
-    grid-gap: 32px;
+    grid-gap: 40px;
     margin: 16px auto;
   }
 `;
@@ -45,8 +45,10 @@ const Card = styled.div`
   box-shadow: 0px 0px 8px gray;
   height: 100%;
   width: 100%;
-  min-width: 100px;
+  min-width: 50px;
   margin: 16px 0;
+  padding: 0 16px;
+  background-color: white;
 `;
 
 const CardTitulo = styled.h3`
@@ -95,8 +97,8 @@ const Legenda = styled.div`
 
 const CorLegenda = styled.div`
   background-color: ${props => props.cor};
-  width: 15px;
-  height: 15px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   margin-right: 8px;
 `;

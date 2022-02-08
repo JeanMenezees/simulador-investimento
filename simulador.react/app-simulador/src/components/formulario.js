@@ -42,7 +42,7 @@ const FormularioTitulo = styled.h1`
 `;
 
 const StyledLabel = styled.p`
-  font-size: 1.1rem;
+  font-size: ${(props) => (props.valido ? "1rem;" : "0.7rem;")}
   text-align: left;
   margin: ${(props) => (props.valido ? "8px 0;" : "2px 0;")}
   color: ${(props) => (props.valido ? "black;" : "red;")}
@@ -51,6 +51,8 @@ const StyledLabel = styled.p`
 export default function Formulario(props) {
   // Usando o state para sabermos qual e o valor do ipca/cdi
   const [valor, setValor] = useState("");
+  
+  // States que guardam se os inputs que o usuario digita são só numeros
   const [valido1, setValido1] = useState(true);
   const [valido2, setValido2] = useState(true);
 
@@ -92,7 +94,7 @@ export default function Formulario(props) {
         placeholder="R$"
         onChange={(e) => {
           e.preventDefault();
-
+          // isNaN verifica se e numero ou nao
           setValido1(!isNaN(e.target.value));
         }}
       />
@@ -108,7 +110,7 @@ export default function Formulario(props) {
         placeholder={props.tipo == "0" ? "" : "%"}
         onChange={(e) => {
           e.preventDefault();
-
+          // isNaN verifica se e numero ou nao
           setValido2(!isNaN(e.target.value));
         }}
       />
