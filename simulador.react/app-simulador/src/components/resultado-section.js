@@ -1,6 +1,4 @@
 import React from "react";
-import { useContext, useEffect, useState } from "react/cjs/react.development";
-import ContextoDeDados from "../contexts/contextoDados";
 import styled from "styled-components";
 
 const BoxResultadoSection = styled.div`
@@ -9,13 +7,13 @@ const BoxResultadoSection = styled.div`
   aling-items: center;
   justify-content: center;
   width: 100%;
-  
-  @media (min-width: 1070px){
+
+  @media (min-width: 1070px) {
     width: 50%;
     margin: 0 128px;
   }
 
-  @media (min-width: 700px){
+  @media (min-width: 700px) {
     width: 50%;
   }
 `;
@@ -32,7 +30,7 @@ const BoxCards = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media (min-width: 1070px){
+  @media (min-width: 1070px) {
     display: grid;
     grid-template-columns: auto auto auto;
     grid-gap: 32px;
@@ -79,16 +77,42 @@ const Grafico = styled.div`
   justify-content: center;
 `;
 
+const BoxLegenda = styled.div`
+  display: flex;
+  flex-direcion: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 30%;
+`;
+
+const Legenda = styled.div`
+  display: flex;
+  flex-direcion: row;
+  align-items: center;
+  margin-right: 8px;
+`;
+
+const CorLegenda = styled.div`
+  background-color: ${props => props.cor};
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-right: 8px;
+`;
+
 const ColunaPretaGrafico = styled.div`
   width: 6.25%;
   margin: 0 2px;
   height: calc(${(props) => props.porcentagem} * 200px / 100);
   background-color: black;
-  border-top: solid orange calc(${(props) => props.porcentagemAporte} * 200px / 100);
+  border-top: solid orange
+    calc(${(props) => props.porcentagemAporte} * 200px / 100);
 
-  @media (min-width: 1070px){
+  @media (min-width: 1070px) {
     height: calc(${(props) => props.porcentagem} * 500px / 100);
-    border-top: solid orange calc(${(props) => props.porcentagemAporte} * 500px / 100);
+    border-top: solid orange
+      calc(${(props) => props.porcentagemAporte} * 500px / 100);
   }
 `;
 
@@ -154,6 +178,16 @@ export default function ResultadoSection(props) {
           )}
         </Grafico>
       </BoxGrafico>
+      <BoxLegenda>
+        <Legenda>
+          <CorLegenda cor="orange"/>
+          <p>Com Aporte</p>
+        </Legenda>
+        <Legenda>
+          <CorLegenda cor="black"/>
+          <p>Sem Aporte</p>
+        </Legenda>
+      </BoxLegenda>
     </BoxResultadoSection>
   );
 }

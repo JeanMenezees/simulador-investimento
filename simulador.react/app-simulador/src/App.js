@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react/cjs/react.development";
+import { useState } from "react/cjs/react.development";
 import axios from "axios";
 import styled from "styled-components";
 import SimuladorSection from "./components/simulacao-section";
