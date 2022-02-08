@@ -85,4 +85,4 @@ Pronto! agora você ja pode usar o simulador!
   
 ## Para onde prosseguir?
  - Implementar uma lógica para postar dados na API
- - Implementar mais testes de front para garantir
+ - Implementar mais testes de front
