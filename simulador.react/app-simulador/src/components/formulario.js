@@ -119,9 +119,11 @@ export default function Formulario(props) {
       ) : (
         <StyledLabel>O campo deve conter somente números</StyledLabel>
       )}
+
       {/* Previne o usuario de trocar o valor */}
       <StyledLabel valido>{props.labels[2]}</StyledLabel>
       <StyledInput
+        id={props.labels[2] == "IPCA (ao ano)" ? "ipca": "cdi"}
         type="text"
         value={valor}
         onChange={() => {
