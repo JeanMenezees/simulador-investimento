@@ -62,6 +62,7 @@ npx json-server db.json
 
 Este comando irá rodar localmente a api fake (db.json)
 
+
 ### Iniciando projeto React.js
 
 Após isso, agora é hora de rodar o projeto em react, que fica na pasta simulador.react
@@ -77,6 +78,8 @@ No seu terminal, você verá a seguinte mensagem: **Já há algo rodando nessa p
 Clique y (para yes), isso ocorre porque na porta 3000 do seu localhost, a api ja está rodando.
 
 Pronto! agora você ja pode usar o simulador!
+
+
 
 ## Como rodar os testes (**Cypress**)
 
@@ -95,6 +98,7 @@ Isto abrirá a guia de testes do cypress
 Este projeto é testado em diferentes componentes, então escolha o componente que deseja testar
 
 Pronto, agora é so rodar os testes!
+
 
 ## Regras aplicadas
 
