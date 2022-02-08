@@ -57,9 +57,9 @@ export default function ConjuntoDeBotoes(props) {
             direito
             onClick={(e) => {
               e.preventDefault();
-              contexto.setIndexacao(props.valores[2].toLowerCase());
+              contexto.setIndexacao("ipca");
             }}
-            selecionado={contexto.indexacaoSelecionada === props.valores[2].toLowerCase()}
+            selecionado={contexto.indexacaoSelecionada === "ipca"}
           >
             {props.valores[2]}
           </BotaoDeConjunto>
