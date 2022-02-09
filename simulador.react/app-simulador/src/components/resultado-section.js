@@ -43,11 +43,11 @@ const Card = styled.div`
   flex-direction: column;
   align-items: center;
   box-shadow: 0px 0px 8px gray;
-  height: 100%;
+  height: 70%;
   width: 100%;
   min-width: 50px;
   margin: 16px 0;
-  padding: 0 16px;
+  padding: 8px 16px;
   background-color: white;
 `;
 
