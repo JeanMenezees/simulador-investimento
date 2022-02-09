@@ -9,9 +9,7 @@ Este projeto feito com react é um simulador de investimento responsivo que exib
 Para fazer a simulação, basta selecionar o tipo de investimento e o tipo de indexação que deseja, a partir disso, logo após clicar em simmular, o resultado é exibido
 com todos os dados e o gráfico que compara o investimento com aporte e sem aporte.
 
-```
-<Imagem do fluxo de uso>
-```
+<img src="./read-me-src/fluxo.png">
 
 ## Pré requisitos
 
