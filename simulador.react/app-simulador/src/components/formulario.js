@@ -95,7 +95,7 @@ export default function Formulario(props) {
       />
       <StyledLabel valido>{props.labels[0]}</StyledLabel>
       <StyledInput
-        id="input__1--teste"
+        id={props.tipo === "0" ? "input__1--teste" : "input__1cdi--teste"}
         value={
           props.tipo === "0" ? contexto.aporteDiario : contexto.aporteMensal
         }
@@ -120,7 +120,7 @@ export default function Formulario(props) {
 
       <StyledLabel valido>{props.labels[1]}</StyledLabel>
       <StyledInput
-        id="input__2--teste"
+        id={props.tipo === "0" ? "input__2--teste" : "input__2cdi--teste"}
         value={props.tipo === "0" ? contexto.prazo : contexto.rentabilidade}
         type="text"
         placeholder={props.tipo === "0" ? "" : "%"}

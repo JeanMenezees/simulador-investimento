@@ -127,29 +127,29 @@ export default function ResultadoSection(props) {
       <BoxCards>
         <Card>
           <CardTitulo>Valor final bruto</CardTitulo>
-          <CardConteudo>R$ {props.simulacao[0].valorFinalBruto}</CardConteudo>
+          <CardConteudo id="resultado__valor--teste1">R$ {props.simulacao[0].valorFinalBruto}</CardConteudo>
         </Card>
         <Card>
           <CardTitulo>Alíquota do IR</CardTitulo>
-          <CardConteudo>{props.simulacao[0].aliquotaIR}%</CardConteudo>
+          <CardConteudo id="resultado__valor--teste2">{props.simulacao[0].aliquotaIR}%</CardConteudo>
         </Card>
         <Card>
           <CardTitulo>Valor pago em IR</CardTitulo>
-          <CardConteudo>R$ {props.simulacao[0].valorPagoIR}</CardConteudo>
+          <CardConteudo id="resultado__valor--teste3">R$ {props.simulacao[0].valorPagoIR}</CardConteudo>
         </Card>
         <Card>
           <CardTitulo>Valor final líquido</CardTitulo>
-          <CardConteudo destacado>
+          <CardConteudo destacado id="resultado__valor--teste4">
             R$ {props.simulacao[0].valorTotalInvestido}
           </CardConteudo>
         </Card>
         <Card>
           <CardTitulo>Valor total investido</CardTitulo>
-          <CardConteudo>R$ {props.simulacao[0].valorFinalLiquido}</CardConteudo>
+          <CardConteudo id="resultado__valor--teste5">R$ {props.simulacao[0].valorFinalLiquido}</CardConteudo>
         </Card>
         <Card>
           <CardTitulo>Ganho líquido</CardTitulo>
-          <CardConteudo destacado>
+          <CardConteudo destacado id="resultado__valor--teste6">
             R$ {props.simulacao[0].ganhoLiquido}
           </CardConteudo>
         </Card>

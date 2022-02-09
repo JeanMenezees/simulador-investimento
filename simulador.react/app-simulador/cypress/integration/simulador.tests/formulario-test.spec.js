@@ -40,4 +40,18 @@ describe('Ao inicializar o formulario', () => {
     // Visitar e conferir se o botao de simular tem a propriedade desabilitado
     cy.get("#botao__simular--teste").should('not.have.a.property', "valido")
   });
+
+  it('deve habilitar o botao de simular com dados validados', () => {
+    cy.visit("/")
+    // Visitar e conferir se o botao de simular tem a propriedade desabilitado
+    cy.get("#input__1--teste").type(1);
+    cy.get("#input__2--teste").type(1);
+    cy.get("#input__1cdi--teste").type(1);
+    cy.get("#input__2cdi--teste").type(1);
+
+    cy.get("#botao__click--teste").click();
+    cy.get("#botao__click--teste2").click();
+
+    cy.get("#botao__simular--teste").click();
+  });
 });
