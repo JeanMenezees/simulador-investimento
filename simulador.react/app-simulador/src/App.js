@@ -105,7 +105,15 @@ function App() {
   const [aporteMensal, setAporteMensal] = useState("");
   const [rentabilidade, setRentabilidade] = useState("");
 
-  //state para administrar o que esta inválido do formulário
+  // Funcao para validar os dados dos formularios
+  function formularioValido(arrayValidacao = [aporteDiario, prazo, aporteMensal, rentabilidade]){
+    if(arrayValidacao.filter(item => item === "" || isNaN(item)).length === 0){
+      return true;
+    }
+    else{
+      return false;
+    }
+  } 
 
   //State que determina se botao de simular vai ficar ativo
   const [infosValidas, setInfosValidas] = useState(false);
@@ -115,11 +123,14 @@ function App() {
   // TODO
   // Receber se os inputs dos formularios estao validos
   useEffect(() => {
-    if(tipoInvestimento !== "" && tipoIndexacao !== ""){
+    if(tipoInvestimento !== "" && tipoIndexacao !== "" && formularioValido()){
       setInfosValidas(true);
     }
-  }, [tipoInvestimento, tipoIndexacao])
-  
+    else{
+      setInfosValidas(false);
+    }
+  }, [tipoInvestimento, tipoIndexacao, aporteDiario, aporteMensal, prazo, rentabilidade])
+
   return (
     <Box>
       {/* Contexto para haver uma comunicacao entre os childrens e o parent com lift state e data flow para saber qual tipo esta selecionado */}
