@@ -121,7 +121,7 @@ const ColunaPretaGrafico = styled.div`
 export default function ResultadoSection(props) {
   return (
     //Box que engloba toda a secao
-    <BoxResultadoSection>
+    <BoxResultadoSection id="resultado--teste" >
       <TituloSection>Resultado</TituloSection>
       {/* Box da lista de cards */}
       <BoxCards>

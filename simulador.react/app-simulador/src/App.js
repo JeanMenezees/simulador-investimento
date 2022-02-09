@@ -1,4 +1,4 @@
-import { useState } from "react/cjs/react.development";
+import { useEffect, useState } from "react/cjs/react.development";
 import axios from "axios";
 import styled from "styled-components";
 import SimuladorSection from "./components/simulacao-section";
@@ -53,14 +53,14 @@ const Botao = styled.div`
   text-align: center;
   width: 100%;
   padding: 16px;
-  background-color: ${(props) =>
-    props.limparCampos ? "transparent;" : "orange;"};
+  background-color: ${(props) => props.limparCampos ? "transparent;" : "orange;"}
   color: ${(props) => (props.limparCampos ? "black;" : "black;")};
   border-radius: 4px;
   margin: 8px 0;
   font-weight: bold;
   cursor: pointer;
   border: ${(props) => (props.limparCampos ? "solid 2px gray;" : "0")};
+  ${props => props.valido ? "" : "pointer-events: none;"}
 
   @media (min-width: 1070px){
     margin: 0 8px;
@@ -75,12 +75,15 @@ const BoxSimulacaoEBotoes = styled.div`
 `;
 
 function App() {
-  //states para pegar os tipos selecionados para o botao simular dar o get e verificar qual simulacao deve ser exibida
-  const [tipoInvestimento, setTipoInvestimento] = useState();
-  const [tipoIndexacao, setTipoIndexacao] = useState();
-  //state para exibir a secao do resultado
+  // States para pegar os tipos selecionados para o botao simular dar o get e verificar qual simulacao deve ser exibida
+  const [tipoInvestimento, setTipoInvestimento] = useState("");
+  const [tipoIndexacao, setTipoIndexacao] = useState("");
+
+  // State para exibir a secao do resultado
   const [resultadoAtivo, setResultadoAtivo] = useState(false);
-  //Setando a simulacao vazia
+
+  // Setando a simulacao vazia
+  // Esta simulação vai para o resultado
   const [simulacao, setSimulacao] = useState([
     {
       valorFinalBruto: "",
@@ -96,6 +99,27 @@ function App() {
     },
   ]);
 
+  //state para informacoes do formulario
+  const [aporteDiario, setAporteDiario] = useState("");
+  const [prazo, setPrazo] = useState("");
+  const [aporteMensal, setAporteMensal] = useState("");
+  const [rentabilidade, setRentabilidade] = useState("");
+
+  //state para administrar o que esta inválido do formulário
+
+  //State que determina se botao de simular vai ficar ativo
+  const [infosValidas, setInfosValidas] = useState(false);
+
+  //Toda vez que uma informação do formulario muda, as infos sao validadas
+
+  // TODO
+  // Receber se os inputs dos formularios estao validos
+  useEffect(() => {
+    if(tipoInvestimento !== "" && tipoIndexacao !== ""){
+      setInfosValidas(true);
+    }
+  }, [tipoInvestimento, tipoIndexacao])
+  
   return (
     <Box>
       {/* Contexto para haver uma comunicacao entre os childrens e o parent com lift state e data flow para saber qual tipo esta selecionado */}
@@ -105,6 +129,14 @@ function App() {
           indexacaoSelecionada: tipoIndexacao,
           setInvestimento: setTipoInvestimento,
           investimentoSelecionado: tipoInvestimento,
+          setAporteMensal: setAporteMensal,
+          setAporteDiario: setAporteDiario,
+          setRentabilidade: setRentabilidade,
+          setPrazo: setPrazo,
+          aporteMensal: aporteMensal,
+          aporteDiario: aporteDiario,
+          rentabilidade: rentabilidade,
+          prazo: prazo
         }}
       >
         <TituloPrincipal>Simulador de investimentos</TituloPrincipal>
@@ -112,9 +144,24 @@ function App() {
           <BoxSimulacaoEBotoes>
             <SimuladorSection />
             <BoxBotoes>
-              <Botao limparCampos>Limpar campos</Botao>
+              {/* Limpa campos */}
               <Botao
-              // Get na api e filtro com os tipos selecionados do state
+                id="limpa__campo--teste"
+                limparCampos
+                valido
+                onClick={() => {
+                  setAporteDiario("");
+                  setPrazo("");
+                  setAporteMensal("");
+                  setRentabilidade("");
+                }}
+              >
+                Limpar campos
+              </Botao>
+              <Botao
+                // Get na api e filtro com os tipos selecionados do state
+                id="botao__simular--teste"
+                valido={infosValidas}
                 onClick={() => {
                   axios
                     .get("http://localhost:3000/simulacoes")

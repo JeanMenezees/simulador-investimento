@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import ConjuntoDeBotoes from "./conjunto-botoes";
+import { useContext } from "react/cjs/react.development";
+import ContextoDeDados from "../contexts/contextoDados";
 
 const StyledFormulario = styled.form`
   display: flex;
@@ -49,9 +51,12 @@ const StyledLabel = styled.p`
 `;
 
 export default function Formulario(props) {
+  // Contexto para enviar as infos para o App
+  const contexto = useContext(ContextoDeDados);
+
   // Usando o state para sabermos qual e o valor do ipca/cdi
   const [valor, setValor] = useState("");
-  
+
   // States que guardam se os inputs que o usuario digita são só numeros
   const [valido1, setValido1] = useState(true);
   const [valido2, setValido2] = useState(true);
@@ -63,10 +68,10 @@ export default function Formulario(props) {
       .get("http://localhost:3000/indicadores")
       .then((resposta) => {
         setValor((valorAntigo) => {
-          if (props.tipo == "0") {
+          if (props.tipo === "0") {
             return resposta.data[0].valor;
           }
-          if (props.tipo == "1") {
+          if (props.tipo === "1") {
             return resposta.data[1].valor;
           } else {
             return valorAntigo;
@@ -90,40 +95,56 @@ export default function Formulario(props) {
       />
       <StyledLabel valido>{props.labels[0]}</StyledLabel>
       <StyledInput
+        id="input__1--teste"
+        value={
+          props.tipo === "0" ? contexto.aporteDiario : contexto.aporteMensal
+        }
         type="text"
         placeholder="R$"
         onChange={(e) => {
           e.preventDefault();
           // isNaN verifica se e numero ou nao
           setValido1(!isNaN(e.target.value));
+          if (props.tipo === "0") {
+            contexto.setAporteDiario(e.target.value);
+          } else {
+            contexto.setAporteMensal(e.target.value);
+          }
         }}
       />
       {valido1 ? (
         ""
       ) : (
-        <StyledLabel>O campo deve conter somente números</StyledLabel>
+        <StyledLabel id="label__1--teste">O campo deve conter somente números</StyledLabel>
       )}
 
       <StyledLabel valido>{props.labels[1]}</StyledLabel>
       <StyledInput
+        id="input__2--teste"
+        value={props.tipo === "0" ? contexto.prazo : contexto.rentabilidade}
         type="text"
-        placeholder={props.tipo == "0" ? "" : "%"}
+        placeholder={props.tipo === "0" ? "" : "%"}
         onChange={(e) => {
           e.preventDefault();
           // isNaN verifica se e numero ou nao
           setValido2(!isNaN(e.target.value));
+          if (props.tipo === "0") {
+            contexto.setPrazo(e.target.value);
+          } else {
+            contexto.setRentabilidade(e.target.value);
+          }
         }}
       />
       {valido2 ? (
         ""
       ) : (
-        <StyledLabel>O campo deve conter somente números</StyledLabel>
+        <StyledLabel id="label__2--teste">O campo deve conter somente números</StyledLabel>
       )}
 
       {/* Previne o usuario de trocar o valor */}
       <StyledLabel valido>{props.labels[2]}</StyledLabel>
       <StyledInput
-        id={props.labels[2] == "IPCA (ao ano)" ? "ipca": "cdi"}
+        id={props.labels[2] === "IPCA (ao ano)" ? "ipca" : "cdi"}
         type="text"
         value={valor}
         onChange={() => {

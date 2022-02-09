@@ -34,6 +34,7 @@ export default function ConjuntoDeBotoes(props) {
       {props.tres ? (
         <BoxBotoes>
           <BotaoDeConjunto
+            id="botao__click--teste"
             esquerdo
             onClick={(e) => {
               e.preventDefault();
@@ -67,6 +68,7 @@ export default function ConjuntoDeBotoes(props) {
       ) : (
         <BoxBotoes>
           <BotaoDeConjunto
+            id="botao__click--teste2"
             esquerdo
             onClick={(e) => {
               e.preventDefault();

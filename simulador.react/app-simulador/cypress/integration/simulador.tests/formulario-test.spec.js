@@ -28,11 +28,16 @@ describe('Ao inicializar o formulario', () => {
   it('deve aparecer a label de erro dado um caracter digitado', () =>{
     cy.visit("/")
     //Visitar e digitar um caracter em todos os inputs dos formularios
+    cy.get("#input__1--teste").type("a");
+    cy.get("#input__2--teste").type("b");
     //Ver se as labels marcadas estao no documento
+    cy.get("#label__1--teste").should('be.visible');
+    cy.get("#label__2--teste").should('be.visible');
   });
 
   it('nao deve habilitar o botao dado os inputs vazios dos forms', () => {
     cy.visit("/")
     // Visitar e conferir se o botao de simular tem a propriedade desabilitado
+    cy.get("#botao__simular--teste").should('not.have.a.property', "valido")
   });
 });
