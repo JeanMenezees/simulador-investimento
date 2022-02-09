@@ -5,7 +5,7 @@ import ConjuntoDeBotoes from "./conjunto-botoes";
 import { useContext } from "react/cjs/react.development";
 import ContextoDeDados from "../contexts/contextoDados";
 
-const StyledFormulario = styled.form`
+const StyledFormulario = styled.div`
   display: flex;
   flex-direction: column;
   padding: 4%;
