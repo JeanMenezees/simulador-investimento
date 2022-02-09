@@ -19,19 +19,19 @@ Foi usado o hook useContext para apenas os sub componentes compartilharem com o 
 
 #### Componentes dinâmicos
 
-##### <Botao /> *(Fica em <App />)*
+##### ```<Botao />``` *(Fica em ```<App />```)*
  - **Props**
   - limparCampos (*bool*)
     - para definir as cores diferenciais entre os dois botoes da tela principal
   - valido (*bool*)
     - para definir se o botao deve ou não ser clicado
 
-##### <StyledLabel /> *(Fica em <Formulario />)*
+##### ```<StyledLabel />``` *(Fica em ```<Formulario />```)*
  - **Props**
   - valido (*bool*)
     - para definir a margem, o tamanho da fonte e a cor da label
 
-##### <BotaoDeConjunto /> *(Fica em <ConjuntoDeBotoes />)*
+##### ```<BotaoDeConjunto />``` *(Fica em ```<ConjuntoDeBotoes />```)*
  - **Props**
   - selecionado (*bool*)
     - para definir a cor de fundo do botao e a cor do texto
@@ -40,17 +40,17 @@ Foi usado o hook useContext para apenas os sub componentes compartilharem com o 
   - direito (*bool*)
     - para definir o raio das bordas direitas
 
-##### <CardConteudo /> *(Fica em <ResultadoSection />)*
+##### ```<CardConteudo />``` *(Fica em ```<ResultadoSection />```)*
  - **Props**
   - destacado (*bool*)
     - para definir a cor do texto e tamanho da fonte
 
-##### <CorLegenda /> *(Fica em <ResultadoSection />)*
+##### ```<CorLegenda />``` *(Fica em ```<ResultadoSection />```)*
  - **Props**
   - cor (*bool*)
     - para definir a cor de fundo
 
-##### <ColunaPretaGrafico /> *(Fica em <ResultadoSection />)*
+##### ```<ColunaPretaGrafico />``` *(Fica em ```<ResultadoSection />```)*
  - **Props**
   - porentagem (*number*)
     - para definir o tamanho da coluna preta
