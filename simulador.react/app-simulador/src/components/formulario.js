@@ -1,54 +1,15 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import axios from "axios";
 import ConjuntoDeBotoes from "./conjunto-botoes";
 import { useContext } from "react/cjs/react.development";
 import ContextoDeDados from "../contexts/contextoDados";
-
-const StyledFormulario = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 4%;
-  box-sizing: border-box;
-
-  @media (min-width: 1070px) {
-    width: 50%;
-  }
-`;
-
-const StyledInput = styled.input`
-  margin: 8px 0;
-  padding: 8px;
-  font-size: 1.2rem;
-  border-top: 0;
-  border-left: 0;
-  border-right: 0;
-  background-color: transparent;
-
-  &:focus {
-    outline: none;
-  }
-`;
-
-const FormularioHeader = styled.header`
-  display: flex;
-  flex-direction: row;
-  algin-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-`;
-
-const FormularioTitulo = styled.h1`
-  text-align: left;
-  font-size: 1.1rem;
-`;
-
-const StyledLabel = styled.p`
-  font-size: ${(props) => (props.valido ? "1rem;" : "0.7rem;")}
-  text-align: left;
-  margin: ${(props) => (props.valido ? "8px 0;" : "2px 0;")}
-  color: ${(props) => (props.valido ? "black;" : "red;")}
-`;
+import {
+  StyledInput,
+  StyledFormulario,
+  StyledLabel,
+  FormularioHeader,
+  FormularioTitulo,
+} from "../styled-components/Formulário/styles";
 
 export default function Formulario(props) {
   // Contexto para enviar as infos para o App
@@ -115,7 +76,9 @@ export default function Formulario(props) {
       {valido1 ? (
         ""
       ) : (
-        <StyledLabel id="label__1--teste">O campo deve conter somente números</StyledLabel>
+        <StyledLabel id="label__1--teste">
+          O campo deve conter somente números
+        </StyledLabel>
       )}
 
       <StyledLabel valido>{props.labels[1]}</StyledLabel>
@@ -138,7 +101,9 @@ export default function Formulario(props) {
       {valido2 ? (
         ""
       ) : (
-        <StyledLabel id="label__2--teste">O campo deve conter somente números</StyledLabel>
+        <StyledLabel id="label__2--teste">
+          O campo deve conter somente números
+        </StyledLabel>
       )}
 
       {/* Previne o usuario de trocar o valor */}

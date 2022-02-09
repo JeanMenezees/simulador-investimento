@@ -1,78 +1,16 @@
 import { useEffect, useState } from "react/cjs/react.development";
 import axios from "axios";
-import styled from "styled-components";
 import SimuladorSection from "./components/simulacao-section";
 import ContextoDeDados from "./contexts/contextoDados";
 import ResultadoSection from "./components/resultado-section";
-
-const Box = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: whitesmoke;
-  padding: 8px;
-`;
-
-const BoxSecoes = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-
-  @media (min-width: 1070px) {
-    flex-direction: row;
-  }
-
-  @media (min-width: 700px) {
-    flex-direction: row;
-    width: 90%;
-  }
-`;
-
-const TituloPrincipal = styled.h1`
-  font-size: 2rem;
-  color: black;
-  text-align: center;
-`;
-
-const BoxBotoes = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-
-  @media (min-width: 1070px) {
-    flex-direction: row;
-  }
-`;
-
-const Botao = styled.div`
-  bottom: ${(props) => (props.limparCampos ? "64px;" : "8px;")}
-  text-align: center;
-  width: 100%;
-  padding: 16px;
-  background-color: ${(props) => props.limparCampos ? "transparent;" : "orange;"}
-  color: ${(props) => (props.limparCampos ? "black;" : "black;")};
-  border-radius: 4px;
-  margin: 8px 0;
-  font-weight: bold;
-  cursor: pointer;
-  border: ${(props) => (props.limparCampos ? "solid 2px gray;" : "0")};
-  ${props => props.valido ? "" : "pointer-events: none;"}
-
-  @media (min-width: 1070px){
-    margin: 0 8px;
-  }
-`;
-
-const BoxSimulacaoEBotoes = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
+import {
+  Box,
+  BoxSecoes,
+  BoxBotoes,
+  BoxSimulacaoEBotoes,
+  Botao,
+  TituloPrincipal,
+} from "./styled-components/App/styles";
 
 function App() {
   // States para pegar os tipos selecionados para o botao simular dar o get e verificar qual simulacao deve ser exibida
@@ -106,14 +44,17 @@ function App() {
   const [rentabilidade, setRentabilidade] = useState("");
 
   // Funcao para validar os dados dos formularios
-  function formularioValido(arrayValidacao = [aporteDiario, prazo, aporteMensal, rentabilidade]){
-    if(arrayValidacao.filter(item => item === "" || isNaN(item)).length === 0){
+  function formularioValido(
+    arrayValidacao = [aporteDiario, prazo, aporteMensal, rentabilidade]
+  ) {
+    if (
+      arrayValidacao.filter((item) => item === "" || isNaN(item)).length === 0
+    ) {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
-  } 
+  }
 
   //State que determina se botao de simular vai ficar ativo
   const [infosValidas, setInfosValidas] = useState(false);
@@ -123,13 +64,19 @@ function App() {
   // TODO
   // Receber se os inputs dos formularios estao validos
   useEffect(() => {
-    if(tipoInvestimento !== "" && tipoIndexacao !== "" && formularioValido()){
+    if (tipoInvestimento !== "" && tipoIndexacao !== "" && formularioValido()) {
       setInfosValidas(true);
-    }
-    else{
+    } else {
       setInfosValidas(false);
     }
-  }, [tipoInvestimento, tipoIndexacao, aporteDiario, aporteMensal, prazo, rentabilidade])
+  }, [
+    tipoInvestimento,
+    tipoIndexacao,
+    aporteDiario,
+    aporteMensal,
+    prazo,
+    rentabilidade,
+  ]);
 
   return (
     <Box>
@@ -147,7 +94,7 @@ function App() {
           aporteMensal: aporteMensal,
           aporteDiario: aporteDiario,
           rentabilidade: rentabilidade,
-          prazo: prazo
+          prazo: prazo,
         }}
       >
         <TituloPrincipal>Simulador de investimentos</TituloPrincipal>
